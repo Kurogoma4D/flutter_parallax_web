@@ -4,7 +4,7 @@ import 'package:flutter_web/material.dart';
 
 Widget buildStack(Size _size, ValueNotifier<double> _scrollPer) {
   return Stack(
-    children: _buildChildren(_size, _scrollPer, 5)
+    children: _buildChildren(_size, _scrollPer, 6)
   );
 }
 
@@ -17,8 +17,8 @@ List<Widget> _buildChildren(Size _size, ValueNotifier<double> _scrollPer, int le
         valueListenable: _scrollPer,
         builder: (context, value, _) {
           return Positioned(
-            top: (value+0.1 > i*0.2) ? min((value * 500)/(i+0.25), _size.height-_size.height * 0.6) : 0,
-            left: i * _size.width * 0.3,
+            top: (value+0.1 > i*0.2) ? min((value * 600)/(i*0.5+0.8), _size.height-_size.height * 0.6) : 0,
+            left: i * _size.width * 0.2,
             width: _size.width * 0.3,
             height: _size.height * 0.6,
             child: Container(color: Colors.lightBlue[100*i+100]),
