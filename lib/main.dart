@@ -1,7 +1,8 @@
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/widgets.dart';
 
-import 'stack_sample.dart';
+//import 'stack_sample.dart';
+import 'stack_sequence.dart';
 
 void main() => runApp(MyApp());
 
