@@ -1,6 +1,8 @@
 import 'package:flutter_web/material.dart';
 import 'package:flutter_web/widgets.dart';
 
+import 'stack_sample.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -52,40 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Container(
         width: _screenSize.width * 1.5,
         height: _screenSize.height,
-        child: _buildStack(_screenSize),
+        child: buildStack(_screenSize, _scrollPer),
       ),
-    );
-  }
-
-  Widget _buildStack(Size _size) {
-    return Stack(
-      children: <Widget>[
-        ValueListenableBuilder(
-          valueListenable: _scrollPer,
-          builder: (context, value, _){
-            return Positioned(
-              top: _size.height * 0.2 + (value * 100),
-              left: _size.width * 0.2,
-              width: 800,
-              height: 300,
-              child: Container(color: Colors.amber),
-            );
-          },
-        ),
-
-        ValueListenableBuilder(
-          valueListenable: _scrollPer,
-          builder: (context, value, _){
-            return Positioned(
-              top: _size.height * 0.5 + (-value * 400),
-              left: _size.width * 0.4,
-              width: 800,
-              height: 400,
-              child: Container(color: Colors.lightBlue),
-            );
-          },
-        ),
-      ],
     );
   }
 
