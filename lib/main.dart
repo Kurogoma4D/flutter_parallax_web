@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final Size _screenSize = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: ClampingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       controller: _scrollController,
       child: Container(
