@@ -1,4 +1,5 @@
 import 'package:flutter_web/material.dart';
+import 'package:flutter_web/widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final Size _screenSize = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       controller: _scrollController,
       child: Container(
