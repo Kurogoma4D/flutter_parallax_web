@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Container(
         width: _screenSize.width * 1.5,
         height: _screenSize.height,
-        child: buildStack(_screenSize, _scrollPer),
+        child: SlideBoxes(_screenSize, _scrollPer),
       ),
     );
   }

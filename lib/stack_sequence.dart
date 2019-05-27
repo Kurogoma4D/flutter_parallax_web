@@ -2,31 +2,46 @@ import 'dart:math';
 
 import 'package:flutter_web/material.dart';
 
-Widget buildStack(Size _size, ValueNotifier<double> _scrollPer) {
-  return Stack(
-    children: _buildChildren(_size, _scrollPer, 6)
-  );
+class SlideBoxes extends StatefulWidget {
+  SlideBoxes(this.size, this.scrollPer,{Key key}) : super(key: key);
+
+  final Size size;
+  final ValueNotifier<double> scrollPer;
+  final int numberOfBoxes = 6;
+
+  _SlideBoxesState createState() => _SlideBoxesState();
 }
 
-List<Widget> _buildChildren(Size _size, ValueNotifier<double> _scrollPer, int length) {
-  List<Widget> list = [];
-
-  for(var i = 0; i<length; i++) {
-    list.add(
-      ValueListenableBuilder(
-        valueListenable: _scrollPer,
-        builder: (context, value, _) {
-          return Positioned(
-            top: (value+0.1 > i*0.2) ? min((value * 600)/(i*0.5+0.8), _size.height-_size.height * 0.6) : 0,
-            left: i * _size.width * 0.2,
-            width: _size.width * 0.3,
-            height: _size.height * 0.6,
-            child: Container(color: Colors.lightBlue[100*i+100]),
-          );
-        },
-      )
-    );
+class _SlideBoxesState extends State<SlideBoxes> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: _buildChildren());
   }
 
-  return list;
+  List<Widget> _buildChildren() {
+    List<Widget> list = [];
+
+    double boxHeight = widget.size.height * 0.6;
+    double boxPosRef = (1 / widget.numberOfBoxes);
+
+    for (var i = 0; i < widget.numberOfBoxes; i++) {
+      list.add(ValueListenableBuilder(
+        valueListenable: widget.scrollPer,
+        builder: (context, value, _) {
+          return Positioned(
+            top: (value > i * boxPosRef)
+                ? min(
+                    value / (1 - i * 0.2) * 100, widget.size.height - boxHeight)
+                : 0,
+            left: i * widget.size.width * boxPosRef,
+            width: widget.size.width * 0.3,
+            height: boxHeight,
+            child: Container(color: Colors.lightBlue[100 * i + 100]),
+          );
+        },
+      ));
+    }
+
+    return list;
+  }
 }
