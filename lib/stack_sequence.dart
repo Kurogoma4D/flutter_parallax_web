@@ -7,7 +7,7 @@ class SlideBoxes extends StatefulWidget {
 
   final Size size;
   final ValueNotifier<double> scrollPer;
-  final int numberOfBoxes = 6;
+  final int numberOfBoxes = 8;
 
   _SlideBoxesState createState() => _SlideBoxesState();
 }
@@ -31,7 +31,7 @@ class _SlideBoxesState extends State<SlideBoxes> {
           return Positioned(
             top: (value > i * boxPosRef)
                 ? min(
-                    value / (1 - i * 0.2) * 100, widget.size.height - boxHeight)
+                    (1 - (1-value) / (1-i*boxPosRef)) * 500, widget.size.height - boxHeight)
                 : 0,
             left: i * widget.size.width * boxPosRef,
             width: widget.size.width * 0.3,
